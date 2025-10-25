@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmad Syahdi Al-Khawarizmi | IoT & Embedded Systems Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero .contact-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .hero .contact-links a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #667eea;
+        }
+
+        /* About */
+        .about-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Experience */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .experience-item h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .company {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            padding-left: 1.5rem;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education */
+        .education-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .education-card h3 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .degree {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .gpa {
+            color: #667eea;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* Contact */
+        #contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        #contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #667eea;
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                padding: 1rem 2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .experience-timeline {
+                padding-left: 1rem;
+            }
+
+            .experience-item::before {
+                left: -1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Ahmad Syahdi</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Ahmad Syahdi Al-Khawarizmi</h1>
+            <p class="subtitle">IoT Engineer & Embedded Systems Developer</p>
+            <div class="contact-links">
+                <a href="mailto:rizmisyahdi@gmail.com">📧 Email</a>
+                <a href="tel:+6289520029058">📱 +62 895-2002-9058</a>
+                <a href="https://linkedin.com/in/your-profile" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/your-profile" target="_blank">💻 GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>
+                    I am a fresh graduate majoring in Mechatronics and Artificial Intelligence with a strong interest in Programming, Microcontrollers, PLC, IoT, Embedded Systems, AI, and Robotics Engineering.
+                </p>
+                <p>
+                    I am highly dedicated to achieving my goals and have developed skills in project management, problem-solving, and effective communication. With hands-on experience in firmware development using C/C++ and Python, I have successfully contributed to IoT solutions across various industries including agriculture and manufacturing.
+                </p>
+                <p>
+                    My expertise includes designing and developing firmware for IoT devices, implementing CRUD data management, configuring device connectivity using protocols like BLE, MQTT, and HTTP, and integrating hardware components with software interfaces.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming Languages</h3>
+                    <ul>
+                        <li>C/C++</li>
+                        <li>Python</li>
+                        <li>C#</li>
+                        <li>Java</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Hardware & Platforms</h3>
+                    <ul>
+                        <li>Arduino</li>
+                        <li>ESP32</li>
+                        <li>ESP8266</li>
+                        <li>PLC & HMI</li>
+                        <li>Microcontrollers</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>IoT & Protocols</h3>
+                    <ul>
+                        <li>MQTT</li>
+                        <li>HTTP</li>
+                        <li>BLE (Bluetooth Low Energy)</li>
+                        <li>Thingsboard</li>
+                        <li>Blynk & Node-Red</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Specializations</h3>
+                    <ul>
+                        <li>Embedded Systems</li>
+                        <li>Firmware Development</li>
+                        <li>IoT Solutions</li>
+                        <li>Robotics Engineering</li>
+                        <li>Artificial Intelligence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Junior Hardware Engineer</h3>
+                    <div class="company">PT. Erpana Integrasi Data (BroilerX) - Sleman, Yogyakarta</div>
+                    <div class="date">January 2025 – April 2025</div>
+                    <ul>
+                        <li>Developed firmware in C/C++ for smart climate control in poultry farms</li>
+                        <li>Implemented CRUD data management and hardware integration (fan, heater, cooling pad, lighting)</li>
+                        <li>Integrated firmware with LCD interface for device monitoring and control</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>IoT Engineer & Embedded System</h3>
+                    <div class="company">PT. Surya Inovasi Prioritas - Batam (Remote)</div>
+                    <div class="date">July 2024 – April 2025</div>
+                    <ul>
+                        <li>Wrote and optimized code in C/C++ and Python for firmware development</li>
+                        <li>Designed and developed firmware for IoT devices to ensure functionality and support operations such as CRUD and data management</li>
+                        <li>Configured device connectivity using communication protocols including BLE, MQTT, and HTTP</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Internship Trainee</h3>
+                    <div class="company">PT. Komatsu Indonesia - Jakarta Utara, Jakarta</div>
+                    <div class="date">October 2024 – December 2024</div>
+                    <ul>
+                        <li>Performed stock-taking and managed warehouse inventory efficiently</li>
+                        <li>Designed IoT hardware and firmware for a contactor control device to control contactors via a mobile application</li>
+                        <li>Conducted testing and troubleshooting of prototypes to ensure compliance with safety and operational standards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2>Education & Certifications</h2>
+            <div class="education-card">
+                <h3>Universitas Pendidikan Indonesia</h3>
+                <div class="degree">Bachelor of Engineering - Mechatronics and Artificial Intelligence</div>
+                <div class="date">Graduated: August 2025 | Purwakarta, Jawa Barat</div>
+                <div class="gpa">Cumulative GPA: 3.72/4.0</div>
+                <p><strong>Relevant Coursework:</strong> Programming, Microcontrollers, PLC, Wiring Diagrams, Internet of Things (IoT), Embedded System, Artificial Intelligence, Robotics Engineering</p>
+            </div>
+
+            <div class="education-card" style="margin-top: 2rem;">
+                <h3>PT Linimuda Inspirasi Negeri (MySkill)</h3>
+                <div class="degree">SIB IoT Engineer for Smart Industry</div>
+                <div class="date">February 2024 – June 2024 | Jakarta Selatan</div>
+                <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+                    <li>Introduction to IoT architecture and essential components</li>
+                    <li>Exploration of communication protocols including MQTT and HTTP</li>
+                    <li>Hardware prototypes development and integration with Thingsboard, Blynk, and Node-Red</li>
+                    <li>Implemented IoT solutions in manufacturing, agriculture, and logistics</li>
+                </ul>
+            </div>
+
+            <div class="about-content" style="margin-top: 2rem;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Additional Certifications</h3>
+                <ul style="padding-left: 1.5rem;">
+                    <li>Personal Branding Training - MicroMentor Program by MercyCorps</li>
+                    <li>IC3 Digital Literacy</li>
+                    <li>PTESOL English Score: 500 (Intermediate)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <a href="mailto:rizmisyahdi@gmail.com">rizmisyahdi@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>📱 Phone</h3>
+                    <a href="tel:+6289520029058">+62 895-2002-9058</a>
+                </div>
+                <div class="contact-item">
+                    <h3>📍 Location</h3>
+                    <p>Jakarta, Indonesia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Ahmad Syahdi Al-Khawarizmi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navMenu').classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const menu = document.getElementById('navMenu');
+            const btn = document.querySelector('.mobile-menu-btn');
+            
+            if (!nav.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
