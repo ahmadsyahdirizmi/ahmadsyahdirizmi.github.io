@@ -1,1162 +1,150 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio Ahmad Syahdi Al-Khawarizmi - IoT Engineer & Embedded System Developer">
-    <meta name="keywords" content="IoT, Embedded Systems, Arduino, ESP32, Firmware Development, C++, Python">
-    <meta name="author" content="Ahmad Syahdi Al-Khawarizmi">
-    <title>Portfolio | Ahmad Syahdi Al-Khawarizmi</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --accent: #ec4899;
-            --dark: #0f172a;
-            --dark-lighter: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --bg-dark: #020617;
-            --bg-card: #1e293b;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 3rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 3rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .burger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .burger div {
-            width: 28px;
-            height: 2px;
-            background: var(--text-primary);
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 3rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            display: flex;
-            align-items: center;
-            gap: 5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .hero-label {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 50px;
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-text h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-text .highlight {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-text p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2.5rem;
-            background: var(--gradient-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
-        }
-
-        .cta-button-outline {
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: none;
-        }
-
-        .cta-button-outline:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--primary);
-        }
-
-        .hero-image {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .profile-pic-container {
-            position: relative;
-            width: 400px;
-            height: 400px;
-        }
-
-        .profile-pic-container::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.5;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.05); opacity: 0.7; }
-        }
-
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 1;
-            background: var(--gradient-1);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 50px;
-            color: var(--primary);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .about-card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .about-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .about-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .about-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1rem;
-        }
-
-        /* Experience Section */
-        #experience {
-            background: rgba(30, 41, 59, 0.3);
-        }
-
-        .experience-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .experience-item {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 3rem;
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            align-items: center;
-        }
-
-        .experience-item:hover {
-            transform: translateX(10px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .experience-image {
-            width: 100%;
-            height: 200px;
-            border-radius: 15px;
-            object-fit: cover;
-            background: var(--gradient-2);
-        }
-
-        .experience-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .experience-meta {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .experience-company {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .experience-period {
-            color: var(--text-secondary);
-        }
-
-        .experience-description {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .experience-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .tag {
-            padding: 0.4rem 1rem;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--primary);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-image-container {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-            background: var(--gradient-3);
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.15);
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .project-link {
-            padding: 0.75rem 1.5rem;
-            background: white;
-            color: var(--dark);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            transform: scale(1.05);
-        }
-
-        .project-info {
-            padding: 2rem;
-        }
-
-        .project-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .project-info p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tech-tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: var(--secondary);
-        }
-
-        /* Contact Section */
-        #contact {
-            background: rgba(30, 41, 59, 0.3);
-        }
-
-        .contact-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem 1.25rem;
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(15, 23, 42, 0.7);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            padding: 3rem 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--gradient-primary);
-            color: white;
-            transform: translateY(-5px);
-            border-color: transparent;
-        }
-
-        footer p {
-            color: var(--text-secondary);
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 3rem;
-            right: 3rem;
-            width: 55px;
-            height: 55px;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
-        }
-
-        .back-to-top.show {
-            display: flex;
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media screen and (max-width: 1024px) {
-            .experience-item {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .experience-image {
-                height: 250px;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                position: fixed;
-                right: -100%;
-                top: 75px;
-                flex-direction: column;
-                background: rgba(15, 23, 42, 0.98);
-                backdrop-filter: blur(20px);
-                width: 100%;
-                text-align: center;
-                padding: 3rem 0;
-                gap: 2rem;
-                transition: right 0.3s ease;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .burger {
-                display: flex;
-            }
-
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .hero-content {
-                flex-direction: column-reverse;
-                gap: 3rem;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-text p {
-                font-size: 1.1rem;
-            }
-
-            .profile-pic-container {
-                width: 300px;
-                height: 300px;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                padding: 2rem 1.5rem;
-            }
-
-            .back-to-top {
-                bottom: 2rem;
-                right: 2rem;
-                width: 50px;
-                height: 50px;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ahmad Syahdi Al Khawarizmi — Portofolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+<!-- CSS -->
+<head>
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/index.css" />
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Syahdi.</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="burger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text fade-in">
-                <span class="hero-label">✨ Welcome to my portfolio</span>
-                <h1>Halo, Saya <span class="highlight">Nama Anda</span></h1>
-                <p>Creative Web Developer & Designer yang passionate dalam menciptakan pengalaman digital yang memukau dan inovatif</p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="cta-button">Hubungi Saya →</a>
-                    <a href="#projects" class="cta-button cta-button-outline">Lihat Proyek</a>
-                </div>
-            </div>
-            <div class="hero-image fade-in">
-                <div class="profile-pic-container">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23grad1)' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='32' fill='white' font-weight='bold'%3EProfile%3C/text%3E%3C/svg%3E" alt="Foto Profil" class="profile-pic">
-                </div>
-            </div>
+<!-- ── MAIN CONTENT ── -->
+<main class="welcoming">
+  <h1 class="main-title">Welcome to My Portofolio</h1>
+  <div class="scroll-badge">
+    <span class="scroll-badge-dot"></span>
+    scroll down to reveal
+  </div>
+</main>
+
+<!-- ── FOOTER CLIP WRAPPER (clip-path curtain reveal) ── -->
+<div class="footer-clip-wrapper">
+
+  <footer>
+
+    <!-- Ambient aurora -->
+    <div class="footer-aurora"></div>
+
+    <!-- Grid background -->
+    <div class="footer-bg-grid"></div>
+
+    <!-- Giant background text -->
+    <div class="footer-giant-bg-text" id="giant-text">RIZMI</div>
+
+    <!-- Marquee -->
+    <div class="footer-marquee-wrap">
+      <div class="footer-marquee-track">
+        <!-- Repeated twice for seamless loop -->
+        <div class="marquee-item">
+          <span>Embedded Engineer</span>
+          <span class="marquee-sep">✦</span>
+          <span>Internet of Things</span>
+          <span class="marquee-sep">✦</span>
+          <span>Hardware Engineer</span>
+          <span class="marquee-sep">✦</span>
+          <span>Robotics</span>
+          <span class="marquee-sep">✦</span>
+          <span>Automation</span>
+          <span class="marquee-sep">✦</span>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="section-header fade-in">
-            <span class="section-label">About Me</span>
-            <h2 class="section-title">Tentang Saya</h2>
-            <p class="section-subtitle">Kenalan lebih dekat dengan latar belakang dan keahlian saya</p>
+        <div class="marquee-item">
+          <span>Embedded Engineer</span>
+          <span class="marquee-sep">✦</span>
+          <span>Internet of Things</span>
+          <span class="marquee-sep">✦</span>
+          <span>Hardware Engineer</span>
+          <span class="marquee-sep">✦</span>
+          <span>Robotics</span>
+          <span class="marquee-sep">✦</span>
+          <span>Automation</span>
+          <span class="marquee-sep">✦</span>
         </div>
-        <div class="about-content">
-            <div class="about-card fade-in">
-                <div class="card-icon">🎓</div>
-                <h3>Pendidikan</h3>
-                <p>Lulusan dari Universitas XYZ dengan gelar Sarjana Teknik Informatika. Memiliki pemahaman mendalam tentang algoritma, struktur data, dan prinsip-prinsip software engineering modern.</p>
-            </div>
-            <div class="about-card fade-in">
-                <div class="card-icon">💡</div>
-                <h3>Keahlian</h3>
-                <p>Expert dalam pengembangan web full-stack dengan teknologi modern seperti React, Node.js, Python, dan berbagai framework terkini. Mahir dalam UI/UX design dan responsive development.</p>
-            </div>
-            <div class="about-card fade-in">
-                <div class="card-icon">🚀</div>
-                <h3>Passion</h3>
-                <p>Passionate tentang teknologi cutting-edge, open source contribution, dan continuous learning. Aktif dalam komunitas developer dan senang berbagi knowledge melalui artikel dan mentoring.</p>
-            </div>
+      </div>
+    </div>
+
+    <!-- Scattered photo frames -->
+    <div class="photo-frame photo-frame-1">
+      <img class="photo-slide active" src="assets/profile/Work_Shirt.jpg" alt="" />
+      <img class="photo-slide" src="assets/profile/Non_Formal.jpg" alt="" />
+      <img class="photo-slide" src="assets/profile/Jas_Formal.png" alt="" />
+    </div>
+    <div class="photo-frame photo-frame-2">
+      <img class="photo-slide active" src="assets/unified_hardware/PCM_3.jpeg" alt="" />
+      <img class="photo-slide" src="assets/contactor_control/cc_1.png" alt="" />
+      <img class="photo-slide" src="assets/modbus_gateway/mbg_1.jpg" alt="" />
+    </div>
+    <div class="photo-frame photo-frame-3">
+      <img class="photo-slide active" src="assets/unified_hardware/PCM_1.jpg" alt="" />
+      <img class="photo-slide" src="assets/contactor_control/cc_3.png" alt="" />
+      <img class="photo-slide" src="assets/weather_forecast/wf_2.jpeg" alt="" />
+    </div>
+    <div class="photo-frame photo-frame-4">
+      <img class="photo-slide active" src="assets/modbus_gateway/mbg_2.jpg" alt="" />
+      <img class="photo-slide" src="assets/contactor_control/cc_2.jpg" alt="" />
+      <img class="photo-slide" src="assets/mit_app/mitapp_1.jpg" alt="" />
+    </div>
+
+    <!-- Center content -->
+    <div class="footer-center">
+      <p class="footer-hello animate-in">Halo, Saya</p>
+
+      <h2 class="footer-name animate-in delay-1">
+        Ahmad Syahdi<br />Al Khawarizmi
+      </h2>
+
+      <p class="footer-desc animate-in delay-2">
+        Seorang IoT dan Embedded System Engineer yang memiliki minat dan keahlian
+        dalam mikrokontroler, embedded system, dan teknologi IoT.
+      </p>
+
+      <div class="footer-links animate-in delay-3">
+        <a href="aboutMe.html" class="glass-pill" data-magnetic>About me</a>
+        <a href="experience.html" class="glass-pill" data-magnetic>Experience</a>
+        <a href="project.html" class="glass-pill" data-magnetic>Project</a>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+
+      <span class="footer-copyright">&copy; 2026 Ahmad Syahdi Al Khawarizmi</span>
+
+      <button class="glass-pill back-to-top" id="back-to-top" aria-label="Back to top" data-magnetic>
+        ↑
+      </button>
+
+      <div class="footer-social">
+        <div class="footer-social">
+          <a href="https://github.com/ahmadsyahdirizmi" class="glass-pill" style="padding:10px 16px;" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/ahmadsyahdialkhawarizmi0206/" class="glass-pill" style="padding:10px 16px;" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
         </div>
-    </section>
+      </div>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="section-header fade-in">
-            <span class="section-label">Experience</span>
-            <h2 class="section-title">Pengalaman Kerja</h2>
-            <p class="section-subtitle">Perjalanan profesional dan pencapaian saya</p>
-        </div>
-        <div class="experience-grid">
-            <div class="experience-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Cdefs%3E%3ClinearGradient id='exp1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f093fb;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f5576c;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23exp1)' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='white' font-weight='bold'%3ECompany Logo%3C/text%3E%3C/svg%3E" alt="Company 1" class="experience-image">
-                <div class="experience-content">
-                    <h3>Senior Full Stack Developer</h3>
-                    <div class="experience-meta">
-                        <span class="experience-company">Tech Company A</span>
-                        <span class="experience-period">2022 - Sekarang</span>
-                    </div>
-                    <p class="experience-description">Memimpin tim development dalam membangun aplikasi web enterprise dengan user base 100K+. Mengimplementasikan microservices architecture dan meningkatkan performa aplikasi hingga 40%.</p>
-                    <div class="experience-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">AWS</span>
-                        <span class="tag">Docker</span>
-                    </div>
-                </div>
-            </div>
-            <div class="experience-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Cdefs%3E%3ClinearGradient id='exp2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234facfe;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2300f2fe;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23exp2)' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='white' font-weight='bold'%3ECompany Logo%3C/text%3E%3C/svg%3E" alt="Company 2" class="experience-image">
-                <div class="experience-content">
-                    <h3>Frontend Developer</h3>
-                    <div class="experience-meta">
-                        <span class="experience-company">Startup B</span>
-                        <span class="experience-period">2020 - 2022</span>
-                    </div>
-                    <p class="experience-description">Mengembangkan aplikasi e-commerce dari nol hingga mencapai 50K+ transaksi per bulan. Bertanggung jawab atas UI/UX design dan implementasi responsive design.</p>
-                    <div class="experience-tags">
-                        <span class="tag">Vue.js</span>
-                        <span class="tag">Tailwind</span>
-                        <span class="tag">Figma</span>
-                        <span class="tag">REST API</span>
-                    </div>
-                </div>
-            </div>
-            <div class="experience-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Cdefs%3E%3ClinearGradient id='exp3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23exp3)' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='white' font-weight='bold'%3ECompany Logo%3C/text%3E%3C/svg%3E" alt="Company 3" class="experience-image">
-                <div class="experience-content">
-                    <h3>Junior Web Developer</h3>
-                    <div class="experience-meta">
-                        <span class="experience-company">Digital Agency C</span>
-                        <span class="experience-period">2018 - 2020</span>
-                    </div>
-                    <p class="experience-description">Membangun dan maintain berbagai website client, dari company profile hingga web aplikasi. Belajar best practices dalam web development dan kolaborasi tim.</p>
-                    <div class="experience-tags">
-                        <span class="tag">HTML/CSS</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">WordPress</span>
-                        <span class="tag">Git</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="section-header fade-in">
-            <span class="section-label">Portfolio</span>
-            <h2 class="section-title">Proyek Terbaru</h2>
-            <p class="section-subtitle">Beberapa karya terbaik yang telah saya kerjakan</p>
-        </div>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <div class="project-image-container">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Cdefs%3E%3ClinearGradient id='proj1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23proj1)' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='28' fill='white' font-weight='bold'%3EE-Commerce%3C/text%3E%3C/svg%3E" alt="Project 1" class="project-image">
-                    <div class="project-overlay">
-                        <a href="#" class="project-link">Lihat Detail →</a>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>E-Commerce Platform</h3>
-                    <p>Platform marketplace modern dengan fitur lengkap: payment gateway, real-time inventory, admin dashboard, dan sistem review. Dibangun untuk menangani ribuan transaksi per hari.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Stripe</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image-container">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Cdefs%3E%3ClinearGradient id='proj2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f093fb;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f5576c;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23proj2)' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='28' fill='white' font-weight='bold'%3ETask Manager%3C/text%3E%3C/svg%3E" alt="Project 2" class="project-image">
-                    <div class="project-overlay">
-                        <a href="#" class="project-link">Lihat Detail →</a>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>Task Management App</h3>
-                    <p>Aplikasi kolaborasi tim dengan fitur kanban board, time tracking, dan notifikasi real-time. Meningkatkan produktivitas tim hingga 35% dengan workflow yang efisien.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Vue.js</span>
-                        <span class="tech-tag">Firebase</span>
-                        <span class="tech-tag">Socket.io</span>
-                        <span class="tech-tag">Tailwind</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image-container">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Cdefs%3E%3ClinearGradient id='proj3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234facfe;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2300f2fe;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23proj3)' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='28' fill='white' font-weight='bold'%3ESocial Media%3C/text%3E%3C/svg%3E" alt="Project 3" class="project-image">
-                    <div class="project-overlay">
-                        <a href="#" class="project-link">Lihat Detail →</a>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>Social Media Dashboard</h3>
-                    <p>Dashboard analytics untuk mengelola multiple social media accounts. Menyediakan insights mendalam, scheduling posts, dan automated reporting untuk digital marketers.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Chart.js</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  </footer>
+</div>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="section-header fade-in">
-            <span class="section-label">Get In Touch</span>
-            <h2 class="section-title">Hubungi Saya</h2>
-            <p class="section-subtitle">Punya proyek menarik? Mari diskusi dan wujudkan bersama!</p>
-        </div>
-        <div class="contact-wrapper">
-            <form class="contact-form fade-in">
-                <div class="form-group">
-                    <label for="name">Nama Lengkap</label>
-                    <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="nama@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Pesan</label>
-                    <textarea id="message" name="message" placeholder="Ceritakan tentang proyek atau pertanyaan Anda..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Kirim Pesan →</button>
-            </form>
-        </div>
-    </section>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="#" class="social-link" title="LinkedIn">in</a>
-            <a href="#" class="social-link" title="GitHub">gh</a>
-            <a href="#" class="social-link" title="Instagram">ig</a>
-            <a href="#" class="social-link" title="Twitter">tw</a>
-        </div>
-        <p>&copy; 2025 Nama Anda. Crafted with passion & code ✨</p>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">↑</button>
-
-    <script>
-        // Mobile Menu Toggle
-        const burger = document.querySelector('.burger');
-        const navLinks = document.querySelector('.nav-links');
-        const links = document.querySelectorAll('.nav-links a');
-
-        burger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            burger.classList.toggle('active');
-        });
-
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                burger.classList.remove('active');
-            });
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Back to Top Button
-        const backToTop = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 400) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-
-            // Header shadow on scroll
-            const header = document.querySelector('header');
-            if (window.pageYOffset > 50) {
-                header.style.background = 'rgba(15, 23, 42, 0.95)';
-            } else {
-                header.style.background = 'rgba(15, 23, 42, 0.8)';
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Fade-in Animation on Scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 100);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -80px 0px'
-        });
-
-        fadeElements.forEach(element => {
-            fadeObserver.observe(element);
-        });
-
-        // Form Submission
-        const contactForm = document.querySelector('.contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Animasi submit button
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Mengirim...';
-            submitBtn.disabled = true;
-
-            // Simulasi pengiriman (ganti dengan backend API Anda)
-            setTimeout(() => {
-                submitBtn.textContent = '✓ Terkirim!';
-                submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-                
-                setTimeout(() => {
-                    contactForm.reset();
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = '';
-                    alert('Terima kasih! Pesan Anda telah terkirim. Saya akan segera menghubungi Anda.');
-                }, 2000);
-            }, 1500);
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
-            }
-        });
-
-        // Add stagger animation delay to cards
-        document.querySelectorAll('.about-card, .project-card, .experience-item').forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.1}s`;
-        });
-    </script>
+<!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="scripts/global.js"></script>
+  <script src="scripts/index.js"></script>
 </body>
 </html>

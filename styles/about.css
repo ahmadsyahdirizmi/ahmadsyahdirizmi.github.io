@@ -1,0 +1,143 @@
+/* ── MAIN WRAPPER (inner pages) ── */
+main {
+  position: relative; z-index: 10;
+  padding: 120px 40px 80px;
+  max-width: 1100px; margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+
+/* ── PROFILE PHOTO ── */
+.profile-photo-wrap { position: sticky; top: 100px; opacity: 0; transform: translateY(30px); }
+
+.profile-photo-frame {
+  border-radius: 20px;
+  border: 2px solid rgba(255,255,255,0.12); overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+  aspect-ratio: 3/4; position: relative;
+}
+.profile-photo-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  opacity: 0.85; display: block;
+}
+.profile-photo-glow {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(124,58,237,0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.profile-name-badge {
+  margin-top: 20px; padding: 16px 20px; border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03); backdrop-filter: blur(12px);
+}
+.profile-name-badge h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.profile-name-badge p  { font-size: 0.78rem; color: var(--muted-foreground); }
+
+/* ── RIGHT COLUMN ── */
+.about-right { display: flex; flex-direction: column; gap: 32px; }
+
+/* ── SECTION CARDS ── */
+.section-card {
+  padding: 28px 32px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(10,10,10,0.55);
+  backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+  opacity: 0; transform: translateY(24px);
+}
+.section-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.section-card-icon {
+  width: 38px; height: 38px; border-radius: 11px;
+  border: 1px solid rgba(255,255,255,0.1); background: rgba(124,58,237,0.12);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: rgba(255,255,255,0.7);
+}
+.section-card-title {
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted-foreground);
+}
+
+/* ── EDUCATION ── */
+.edu-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.edu-item:last-child { border-bottom: none; padding-bottom: 0; }
+.edu-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--primary); opacity: 0.7; margin-top: 5px; flex-shrink: 0; }
+.edu-degree { font-size: 0.95rem; font-weight: 700; margin-bottom: 3px; }
+.edu-school { font-size: 0.82rem; color: var(--muted-foreground); margin-bottom: 2px; }
+.edu-year   { font-size: 0.75rem; color: rgba(255,255,255,0.3); font-weight: 500; }
+
+/* ── SKILL SECTION LABELS ── */
+.skill-section { margin-bottom: 24px; }
+.skill-section:last-child { margin-bottom: 0; }
+.skill-section-label {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(255,255,255,0.22);
+  margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+}
+.skill-section-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+/* ── SOFT SKILLS ── */
+.softskill-list { display: flex; flex-direction: column; gap: 14px; }
+.softskill-item {
+  padding: 16px 18px; border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.softskill-item:hover { border-color: rgba(124,58,237,0.25); background: rgba(124,58,237,0.05); }
+.softskill-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.softskill-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08); background: rgba(124,58,237,0.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: rgba(255,255,255,0.6);
+}
+.softskill-name { font-size: 0.88rem; font-weight: 700; }
+.softskill-proofs { display: flex; flex-direction: column; gap: 7px; }
+.softskill-proof { display: flex; align-items: flex-start; gap: 8px; font-size: 0.78rem; color: var(--muted-foreground); line-height: 1.55; }
+.proof-bullet { width: 4px; height: 4px; border-radius: 50%; background: rgba(124,58,237,0.7); flex-shrink: 0; margin-top: 7px; }
+.proof-duration {
+  display: inline-flex; align-items: center;
+  padding: 1px 8px; border-radius: 9999px;
+  font-size: 0.67rem; font-weight: 600; color: rgba(255,255,255,0.28);
+  border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.03);
+  margin-left: 4px; white-space: nowrap; vertical-align: middle;
+}
+
+/* ── HARD SKILLS ── */
+.hardskill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.hardskill-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 9999px;
+  font-size: 0.76rem; font-weight: 600; color: var(--muted-foreground);
+  border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);
+  transition: all 0.3s ease; cursor: default;
+}
+.hardskill-tag:hover { border-color: rgba(124,58,237,0.4); color: var(--foreground); background: rgba(124,58,237,0.08); }
+.hardskill-tag svg { flex-shrink: 0; opacity: 0.75; transition: opacity 0.3s; }
+.hardskill-tag:hover svg { opacity: 1; }
+
+/* ── PASSION ── */
+.passion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .passion-grid { grid-template-columns: 1fr; } }
+.passion-item {
+  padding: 18px; border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.02);
+  display: flex; flex-direction: column; gap: 8px; transition: all 0.3s ease;
+}
+.passion-item:hover { border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.06); }
+.passion-icon {
+  width: 34px; height: 34px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.09); background: rgba(124,58,237,0.1);
+  display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.65);
+}
+.passion-title { font-size: 0.88rem; font-weight: 700; }
+.passion-desc  { font-size: 0.75rem; color: var(--muted-foreground); line-height: 1.6; }
